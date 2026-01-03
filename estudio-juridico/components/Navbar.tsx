@@ -8,69 +8,82 @@ export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-md">
-            <div className="container mx-auto px-4 md:px-6">
-                <div className="flex h-16 items-center justify-between">
-                    <Link href="/" className="flex items-center space-x-2">
-                        <span className="text-xl font-bold font-serif tracking-tight text-primary">RAMIRO TITE</span>
-                        <span className="hidden md:inline-block w-px h-6 bg-gray-300 mx-2"></span>
-                        <span className="hidden md:inline-block text-sm text-gray-600 tracking-wide uppercase">Estudio Jurídico</span>
+        <nav className="sticky top-0 z-50 w-full border-b border-accent/30 bg-glass backdrop-blur-xl transition-all duration-300">
+            <div className="container mx-auto px-4 md:px-8">
+                <div className="flex h-24 items-center justify-between">
+                    <Link href="/" className="flex items-center space-x-4 group">
+                        <div className="flex flex-col">
+                            <span className="text-2xl font-bold font-serif tracking-tight text-primary group-hover:text-primary-hover transition-colors leading-none">
+                                RAMIRO TITE
+                            </span>
+                            <span className="text-xs text-gray-500 tracking-[0.2em] uppercase font-sans mt-2">
+                                Estudio Jurídico
+                            </span>
+                        </div>
                     </Link>
 
-                    <div className="hidden md:flex items-center gap-8">
-                        <Link href="#inicio" className="text-sm font-medium hover:text-primary transition-colors">
-                            Inicio
+                    {/* Desktop Menu */}
+                    <div className="hidden md:flex items-center gap-12">
+                        <div className="flex items-center gap-10">
+                            {['Inicio', 'Sobre Mí', 'Servicios'].map((item) => (
+                                <Link
+                                    key={item}
+                                    href={`#${item.toLowerCase().replace(' ', '-')}`}
+                                    className="text-sm font-bold uppercase tracking-[0.2em] text-secondary/70 hover:text-primary transition-all relative group"
+                                >
+                                    {item}
+                                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
+                                </Link>
+                            ))}
+                        </div>
+                        <Link href="https://wa.me/593989983262">
+                            <Button className="px-8 rounded-none tracking-widest uppercase text-[11px] font-bold shadow-xl hover:scale-105 active:scale-95 transition-all">
+                                Consulta Gratuita
+                            </Button>
                         </Link>
-                        <Link href="#sobre-mi" className="text-sm font-medium hover:text-primary transition-colors">
-                            Sobre Mí
-                        </Link>
-                        <Link href="#servicios" className="text-sm font-medium hover:text-primary transition-colors">
-                            Servicios
-                        </Link>
-                        <Link href="#contacto" className="text-sm font-medium hover:text-primary transition-colors">
-                            Contacto
-                        </Link>
-                        <Button size="sm" variant="primary">
-                            <Link href="https://wa.me/593989983262">Consulta Gratuita</Link>
-                        </Button>
                     </div>
 
-                    <div className="md:hidden">
-                        <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-gray-600">
-                            <span className="sr-only">Menu</span>
-                            {/* Hamburger Icon */}
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <line x1="3" y1="12" x2="21" y2="12"></line>
-                                <line x1="3" y1="6" x2="21" y2="6"></line>
-                                <line x1="3" y1="18" x2="21" y2="18"></line>
-                            </svg>
-                        </button>
-                    </div>
+                    {/* Mobile Menu Toggle */}
+                    <button
+                        className="md:hidden text-secondary p-2 z-50"
+                        onClick={() => setIsOpen(!isOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        <div className="w-6 h-5 relative flex flex-col justify-between">
+                            <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                            <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
+                            <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+                        </div>
+                    </button>
                 </div>
             </div>
 
-            {/* Mobile Menu */}
-            {isOpen && (
-                <div className="md:hidden border-t">
-                    <div className="grid gap-4 p-4 bg-white">
-                        <Link href="#inicio" className="text-sm font-medium hover:text-primary" onClick={() => setIsOpen(false)}>
-                            Inicio
+            {/* Mobile Menu Overlay */}
+            <div className={`fixed inset-0 bg-white/95 backdrop-blur-2xl z-40 transition-all duration-500 md:hidden ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+                <div className="flex flex-col items-center justify-center h-full gap-10 p-4">
+                    {['Inicio', 'Sobre Mí', 'Servicios'].map((item, i) => (
+                        <Link
+                            key={item}
+                            href={`#${item.toLowerCase().replace(' ', '-')}`}
+                            className={`text-2xl font-serif text-secondary hover:text-primary transition-all ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                            style={{ transitionDelay: `${i * 100}ms` }}
+                            onClick={() => setIsOpen(false)}
+                        >
+                            {item}
                         </Link>
-                        <Link href="#sobre-mi" className="text-sm font-medium hover:text-primary" onClick={() => setIsOpen(false)}>
-                            Sobre Mí
-                        </Link>
-                        <Link href="#servicios" className="text-sm font-medium hover:text-primary" onClick={() => setIsOpen(false)}>
-                            Servicios
-                        </Link>
-                        <Link href="#contacto" className="text-sm font-medium hover:text-primary" onClick={() => setIsOpen(false)}>
-                            Contacto
-                        </Link>
-                        <Button className="w-full" size="sm" variant="primary" onClick={() => setIsOpen(false)}>
+                    ))}
+                    <Link
+                        href="https://wa.me/593989983262"
+                        className={`mt-4 w-full max-w-[280px] ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+                        style={{ transitionDelay: '300ms' }}
+                        onClick={() => setIsOpen(false)}
+                    >
+                        <Button className="w-full py-6 rounded-none tracking-[0.3em] uppercase text-xs font-bold shadow-2xl">
                             Consulta Gratuita
                         </Button>
-                    </div>
+                    </Link>
                 </div>
-            )}
+            </div>
         </nav>
     );
 };

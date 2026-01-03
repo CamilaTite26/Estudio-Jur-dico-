@@ -1,52 +1,66 @@
 import Link from 'next/link';
+import { MapPin, Phone, Mail } from 'lucide-react';
 
 export const Footer = () => {
     return (
-        <footer className="bg-secondary text-white py-12 border-t border-gray-800">
-            <div className="container mx-auto px-4 md:px-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-
+        <footer className="bg-secondary pt-20 pb-10 text-white relative overflow-hidden">
+            <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-24">
                     {/* Brand Column */}
-                    <div className="space-y-4">
-                        <h3 className="text-2xl font-bold font-serif tracking-tight">RAMIRO TITE</h3>
-                        <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-                            Defensa legal experta con más de 25 años de trayectoria. Compromiso, integridad y resultados en derecho penal y constitucional.
+                    <div className="space-y-6 text-center sm:text-left">
+                        <Link href="#inicio" className="inline-block group">
+                            <div className="flex flex-col">
+                                <span className="text-2xl md:text-3xl font-bold tracking-tight text-white group-hover:text-primary transition-colors">RAMIRO TITE</span>
+                                <span className="text-[10px] md:text-sm tracking-[0.3em] md:tracking-[0.4em] uppercase text-primary font-bold">Estudio Jurídico</span>
+                            </div>
+                        </Link>
+                        <p className="text-gray-400 font-serif leading-relaxed text-sm md:text-base max-w-xs mx-auto sm:mx-0">
+                            Excelencia académica y rigor técnico en la defensa de sus derechos fundamentales.
                         </p>
                     </div>
 
-                    {/* Contact Column */}
-                    <div className="space-y-4">
-                        <h4 className="text-lg font-semibold font-serif text-gray-200">Contacto</h4>
-                        <div className="space-y-2 text-sm text-gray-400">
-                            <p className="flex items-start gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-1 text-primary shrink-0">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
-                                <span>Calles Bolívar y Carlos Tamayo<br />Cantón Píllaro, Tungurahua, Ecuador</span>
-                            </p>
-                            <p className="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary shrink-0">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                                </svg>
-                                <span>+593 989983262</span>
-                            </p>
-                        </div>
+                    {/* Navigation */}
+                    <div className="space-y-6 text-center sm:text-left">
+                        <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-primary">Navegación</h4>
+                        <nav className="flex flex-col space-y-4 text-sm md:text-base text-gray-300 font-serif">
+                            <Link href="#inicio" className="hover:text-primary transition-colors hover:translate-x-1 duration-300 inline-block py-1">Página de Inicio</Link>
+                            <Link href="#sobre-mi" className="hover:text-primary transition-colors hover:translate-x-1 duration-300 inline-block py-1">Sobre Ramiro Tite</Link>
+                            <Link href="#servicios" className="hover:text-primary transition-colors hover:translate-x-1 duration-300 inline-block py-1">Áreas de Práctica</Link>
+                        </nav>
                     </div>
 
-                    {/* Links Column */}
-                    <div className="space-y-4">
-                        <h4 className="text-lg font-semibold font-serif text-gray-200">Enlaces Rápidos</h4>
-                        <div className="flex flex-col space-y-2 text-sm text-gray-400">
-                            <Link href="#inicio" className="hover:text-primary transition-colors">Inicio</Link>
-                            <Link href="#sobre-mi" className="hover:text-primary transition-colors">Sobre Mí</Link>
-                            <Link href="#servicios" className="hover:text-primary transition-colors">Áreas de Práctica</Link>
+                    {/* Contact Info */}
+                    <div className="space-y-6 text-center sm:text-left sm:col-span-2 lg:col-span-2">
+                        <h4 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-primary">Información</h4>
+                        <div className="grid sm:grid-cols-2 gap-8 lg:gap-12">
+                            <div className="flex items-start gap-4 justify-center sm:justify-start">
+                                <MapPin className="w-5 h-5 text-accent opacity-90 mt-1 shrink-0" />
+                                <div className="space-y-1">
+                                    <p className="text-gray-200 font-serif text-sm md:text-base leading-tight">
+                                        Bolívar y Carlos Tamayo<br />
+                                        Píllaro, Tungurahua
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4 justify-center sm:justify-start">
+                                <Phone className="w-5 h-5 text-accent opacity-90 mt-1 shrink-0" />
+                                <div className="space-y-1">
+                                    <p className="text-gray-200 font-serif text-sm md:text-base">+593 989 983 262</p>
+                                    <p className="text-[10px] uppercase tracking-widest text-primary font-bold">Atención 24/7</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="mt-12 pt-8 border-t border-gray-800 text-center text-xs text-gray-500">
-                    <p>&copy; {new Date().getFullYear()} Estudio Jurídico Ramiro Tite. Todos los derechos reservados.</p>
+                {/* Bottom Bar */}
+                <div className="mt-12 md:mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                    <p className="text-gray-500 text-[10px] md:text-xs uppercase tracking-widest font-sans text-center md:text-left">
+                        © {new Date().getFullYear()} Mg. Ramiro Tite | Excelencia en Defensa Legal
+                    </p>
+                    <div className="flex gap-8 text-[10px] md:text-xs uppercase tracking-widest font-bold text-gray-400">
+                        <span className="opacity-40">Píllaro - Ecuador</span>
+                    </div>
                 </div>
             </div>
         </footer>

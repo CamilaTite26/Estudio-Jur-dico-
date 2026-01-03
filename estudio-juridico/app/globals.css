@@ -1,15 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
-  --primary: #8B0000;
-  /* Deep Red */
-  --secondary: #000000;
-  /* Pure Black */
-  --accent: #A91D3A;
-  /* Brighter Red for details */
+  /* Refined Professional Legal Palette */
+  --background: #FAFAFA;
+  /* Off-white for premium feel */
+  --foreground: #111111;
+  /* Rich Black */
+  --primary: #660000;
+  /* Classic Oxblood/Carmesí Red */
+  --primary-hover: #4d0000;
+  --secondary: #0a0a0a;
+  /* Deepest Black */
+  --accent: #E5E5E5;
+  /* Platinum for subtle borders */
   --muted: #f4f4f4;
+  --glass: rgba(255, 255, 255, 0.7);
 }
 
 @theme inline {
@@ -20,30 +25,116 @@
   --color-accent: var(--accent);
   --color-muted: var(--muted);
 
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-libre-baskerville);
   --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-playfair);
+  --font-serif: var(--font-eb-garamond);
+
+  /* Animation Tokens */
+  --animate-reveal: reveal 0.8s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+  --animate-reveal-up: reveal-up 0.8s cubic-bezier(0.2, 0, 0.2, 1) forwards;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #ffffff;
-    /* FORCE LIGHT MODE FOR THIS ELEGANT THEME OR CUSTOMIZE DARK */
-    --foreground: #1a1a1a;
+@keyframes reveal {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-serif);
+.reveal {
+  opacity: 0;
+  animation: var(--animate-reveal);
+  animation-play-state: paused;
+}
+
+.reveal-up {
+  opacity: 0;
+  animation: var(--animate-reveal-up);
+  animation-play-state: paused;
+}
+
+.revealed {
+  animation-play-state: running;
+}
+
+@layer base {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    line-height: 1.8;
+    font-size: 16px;
+  }
+
+  @media (min-width: 1024px) {
+    body {
+      font-size: 18px;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--secondary);
+    line-height: 1.2;
+  }
+}
+
+@layer utilities {
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
+
+/* Custom Scrollbar for Elegance */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
 }
