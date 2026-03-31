@@ -4,12 +4,12 @@ export const JsonLd = () => {
     "@graph": [
       {
         "@type": "LegalService",
-        "@id": "https://ramirotite.vercel.app/#organization",
+        "@id": "https://ramirotiteabogado.vercel.app/#organization",
         name: "Institución Jurídica Dr. Ramiro Tite",
         alternateName: "Estudio Jurídico Ramiro Tite",
         description:
           "Estudio jurídico especializado en derecho penal, constitucional y penal económico en Píllaro, Tungurahua, Ecuador. Más de 25 años de experiencia en defensa legal de alto impacto.",
-        url: "https://ramirotite.vercel.app",
+        url: "https://ramirotiteabogado.vercel.app",
         telephone: "+593989983262",
         email: "rtitelegal@yahoo.es",
         address: {
@@ -53,7 +53,7 @@ export const JsonLd = () => {
         },
         founder: {
           "@type": "Person",
-          "@id": "https://ramirotite.vercel.app/#person",
+          "@id": "https://ramirotiteabogado.vercel.app/#person",
         },
         hasOfferCatalog: {
           "@type": "OfferCatalog",
@@ -91,17 +91,17 @@ export const JsonLd = () => {
       },
       {
         "@type": "Attorney",
-        "@id": "https://ramirotite.vercel.app/#person",
+        "@id": "https://ramirotiteabogado.vercel.app/#person",
         name: "Mg. Ramiro Tite",
         jobTitle: "Abogado Penalista y Constitucionalista",
         description:
           "Abogado con Maestría y más de 25 años de experiencia en derecho penal y constitucional en Ecuador. Fundador de la Institución Jurídica Dr. Ramiro Tite.",
-        image: "https://ramirotite.vercel.app/Ramiro.jpeg",
-        url: "https://ramirotite.vercel.app",
+        image: "https://ramirotiteabogado.vercel.app/Ramiro.jpeg",
+        url: "https://ramirotiteabogado.vercel.app",
         telephone: "+593989983262",
         email: "rtitelegal@yahoo.es",
         worksFor: {
-          "@id": "https://ramirotite.vercel.app/#organization",
+          "@id": "https://ramirotiteabogado.vercel.app/#organization",
         },
         knowsAbout: [
           "Derecho Penal",
@@ -114,13 +114,13 @@ export const JsonLd = () => {
       },
       {
         "@type": "WebSite",
-        "@id": "https://ramirotite.vercel.app/#website",
-        url: "https://ramirotite.vercel.app",
+        "@id": "https://ramirotiteabogado.vercel.app/#website",
+        url: "https://ramirotiteabogado.vercel.app",
         name: "Mg. Ramiro Tite | Estudio Jurídico",
         description:
           "Defensa Legal con Excelencia en Píllaro y todo el Ecuador",
         publisher: {
-          "@id": "https://ramirotite.vercel.app/#organization",
+          "@id": "https://ramirotiteabogado.vercel.app/#organization",
         },
         inLanguage: "es",
       },

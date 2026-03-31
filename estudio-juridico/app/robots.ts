@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://ramirotite.vercel.app/sitemap.xml",
+    sitemap: "https://ramirotiteabogado.vercel.app/sitemap.xml",
   };
 }
