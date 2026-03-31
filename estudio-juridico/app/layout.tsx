@@ -88,6 +88,9 @@ export const metadata: Metadata = {
     canonical: SITE_URL,
   },
   category: "Legal Services",
+  verification: {
+    google: "iFRCMXarVLzsLwAg2_sIV3WOf2E0p-aDCmP2k2HWOjQ",
+  },
 };
 
 export default function RootLayout({
