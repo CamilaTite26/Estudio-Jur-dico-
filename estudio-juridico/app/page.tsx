@@ -1,23 +1,12 @@
-"use client";
-
-import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { Navbar } from "@/components/Navbar";
-import dynamic from "next/dynamic";
 import { Hero } from "@/components/Hero";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { ClientAnimations } from "@/components/ClientAnimations";
+import { MapViewClient } from "@/components/MapViewClient";
 import { MapPin, Phone, Mail } from "lucide-react";
-
-const MapView = dynamic(() => import("@/components/MapView").then(mod => mod.MapView), {
-  ssr: false,
-  loading: () => (
-    <div className="flex items-center justify-center w-full h-full bg-gray-200">
-      <span className="text-gray-500">Cargando mapa...</span>
-    </div>
-  ),
-});
 
 const OFFICE_COORDINATES = {
   lat: -1.1731843,
@@ -40,33 +29,16 @@ const SERVICES = [
 ];
 
 export default function Home() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("revealed");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const revealElements = document.querySelectorAll(".reveal, .reveal-up");
-    revealElements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <div className="min-h-screen bg-background flex flex-col font-sans selection:bg-primary/10 selection:text-primary">
+      <ClientAnimations />
       <Navbar />
 
       <main className="flex-grow">
         <Hero />
 
         {/* Sobre Mí Section */}
-        <section id="sobre-mi" className="py-20 md:py-32 bg-white overflow-hidden">
+        <section id="sobre-mi" className="py-20 md:py-32 bg-white overflow-hidden" aria-label="Sobre el abogado Ramiro Tite">
           <div className="container px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
               {/* Image Side */}
@@ -74,8 +46,10 @@ export default function Home() {
                 <div className="aspect-[4/5] sm:aspect-square lg:aspect-[4/5] relative overflow-hidden group shadow-2xl">
                   <Image
                     src="/Ramiro.jpeg"
-                    alt="Dr. Ramiro Tite"
+                    alt="Mg. Ramiro Tite - Abogado penalista y constitucionalista con más de 25 años de experiencia en Píllaro, Ecuador"
                     fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
@@ -114,7 +88,7 @@ export default function Home() {
         </section>
 
         {/* Especialidades Section */}
-        <section id="servicios" className="py-20 md:py-32 bg-[#F8F8F8] text-secondary relative overflow-hidden border-y border-accent/30">
+        <section id="servicios" className="py-20 md:py-32 bg-[#F8F8F8] text-secondary relative overflow-hidden border-y border-accent/30" aria-label="Servicios legales y especialidades">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03] pointer-events-none"></div>
           <div className="container relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <div className="max-w-[800px] mb-12 md:mb-20 space-y-4 text-center lg:text-left mx-auto lg:mx-0">
@@ -132,7 +106,7 @@ export default function Home() {
         </section>
 
         {/* Contact & Map Section */}
-        <section id="contacto" className="py-20 md:py-32 bg-[#F2F2F2] overflow-hidden">
+        <section id="contacto" className="py-20 md:py-32 bg-[#F2F2F2] overflow-hidden" aria-label="Información de contacto y ubicación">
           <div className="container px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-start">
               <div className="space-y-8 md:space-y-12 animate-reveal">
@@ -141,7 +115,7 @@ export default function Home() {
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-secondary">Hablemos de su caso</h2>
                 </div>
 
-                <div className="space-y-6 md:space-y-8 max-w-md mx-auto lg:mx-0">
+                <address className="space-y-6 md:space-y-8 max-w-md mx-auto lg:mx-0 not-italic">
                   <div className="flex items-start gap-4 md:gap-6 group">
                     <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shrink-0">
                       <MapPin className="w-5 h-5 md:w-6 md:h-6" />
@@ -160,7 +134,9 @@ export default function Home() {
                     </div>
                     <div className="space-y-1 md:space-y-2">
                       <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-primary/60">Contáctenos</h3>
-                      <p className="text-lg md:text-2xl font-serif text-secondary">+593 989 983 262</p>
+                      <p className="text-lg md:text-2xl font-serif text-secondary">
+                        <a href="tel:+593989983262" aria-label="Llamar al +593 989 983 262">+593 989 983 262</a>
+                      </p>
                     </div>
                   </div>
 
@@ -170,14 +146,16 @@ export default function Home() {
                     </div>
                     <div className="space-y-1 md:space-y-2">
                       <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-primary/60">Correo Electrónico</h3>
-                      <p className="text-lg md:text-xl font-serif text-secondary overflow-hidden text-ellipsis">rtitelegal@yahoo.es</p>
+                      <p className="text-lg md:text-xl font-serif text-secondary overflow-hidden text-ellipsis">
+                        <a href="mailto:rtitelegal@yahoo.es" aria-label="Enviar correo a rtitelegal@yahoo.es">rtitelegal@yahoo.es</a>
+                      </p>
                     </div>
                   </div>
-                </div>
+                </address>
               </div>
 
               <div className="h-[400px] md:h-[600px] w-full relative animate-reveal [animation-delay:300ms] shadow-2xl border-4 md:border-8 border-white">
-                <MapView center={OFFICE_COORDINATES} />
+                <MapViewClient center={OFFICE_COORDINATES} />
               </div>
             </div>
           </div>
